@@ -37,4 +37,7 @@ class Application:
         self.process.start()   
 
     def terminate(self):
-        self.process.kill()
+        self.process.terminate()
+
+    def __del__(self):
+        self.terminate()

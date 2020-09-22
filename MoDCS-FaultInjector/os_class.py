@@ -40,7 +40,7 @@ class OperatingSystem:
             
             # killing all applications
             [a.terminate() for a in self.apps] 
-
+            self.apps.clear()
             print("Operating System is DOWN, next REPAIR will be in:", repair_time,"seconds")
             sleep(repair_time)
 
@@ -55,7 +55,12 @@ class OperatingSystem:
         return apps
 
     def terminate(self):
-        [a.terminate() for a in self.apps]
-        self.process.join()
-        self.process.kill()
+        if self.apps is not None: 
+            # for a in self.apps:
+            #     del a 
+            self.apps.clear()
 
+        self.process.kill()
+        
+    def __del__(self):
+        self.terminate()

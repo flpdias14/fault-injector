@@ -34,7 +34,8 @@ class Hardware:
             #subprocess.Popen(fault_command, shell=True, stdout=subprocess.PIPE)
 
             # killing operating system process
-            self.opsystem.terminate()
+            # self.opsystem.kill()
+            # del self.opsystem
 
 
             print("Hardware is DOWN, next REPAIR will be in:", repair_time, "seconds")
@@ -47,7 +48,6 @@ class Hardware:
     def terminate(self):
         if self.opsystem is not None: 
             self.opsystem.terminate()
-        self.process.join()
-        self.process.kill()
+        self.process.terminate()
 
 
